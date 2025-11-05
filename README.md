@@ -71,12 +71,6 @@ A* Algorithm	Optimal route selection and crime heatmapping
 
 💬 Social Impact: Designed to empower women through safety, legal awareness, and confidence in public spaces.
 
-🎬 Demo Video
-
-🎥 Watch the Naari Shakti AI in action here:
-
-
-(Replace your-video-id with your actual YouTube video ID.)
 
 📱 Installation Guide
 
