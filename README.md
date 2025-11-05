@@ -99,7 +99,7 @@ Submit a pull request 🎉
 
 📸 Project Glimpse
 
-[🎥 Watch Demo Video](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/WhatsApp Video 2025-11-05 at 9.29.10 PM (1).mp4)
+[🎥 Watch Demo Video](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/Demo.mp4)
 
 
 ❤️ Made with passion by Team Innovation Sena
