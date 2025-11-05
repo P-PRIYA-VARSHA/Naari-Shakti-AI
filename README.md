@@ -67,6 +67,8 @@ Social Impact: Working toward empowering women by providing them with tools for 
 Demo Video
 
 Watch the Naari Shakti AI demo here:
+[![Naari Shakti AI Demo Video](Demo)
+
 
 
 
