@@ -76,17 +76,22 @@ A* Algorithm	Optimal route selection and crime heatmapping
 
 Here are some glimpses of our **Naari Shakti AI** mobile application — designed to empower women with safety, legal aid, and community support. 💪✨  
 
-| ![Login](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/Login.png) | ![Home Page](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/home%20page.png) | ![Home Page 2](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/home%20page%202.png) |
-|:--:|:--:|:--:|
-| 🔐 **Login Screen** — Secure user authentication with quick access to emergency tools. | 🏠 **Home Dashboard** — Central hub for navigation, alerts, and safety options. | 🌐 **Alternate Home View** — Personalized layout for easy user interaction. |
-
-| ![Safe Path Navigation](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/Safe%20path%20navigation.png) | ![AI Chatbot](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/ai%20chatbot.png) | ![AI Legal Tool](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/ai%20legal%20tool.png) |
-|:--:|:--:|:--:|
-| 🗺️ **Safe Path Navigation** — Uses AI to guide users through the safest routes. | 💬 **AI Chatbot** — Provides real-time safety guidance and emergency help. | ⚖️ **AI Legal Tool** — Offers instant legal aid and rights awareness. |
-
-| ![Lawyer Search](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/lawyer%20search.png) | ![Pro Bono Platform](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/pro%20bono%20platform.png) |
-|:--:|:--:|
-| 👩‍⚖️ **Lawyer Search** — Find verified lawyers nearby with quick filters. | 🤝 **Pro Bono Platform** — Connects victims with trusted lawyers offering free legal support. |
+<table>
+  <tr>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/Login.png" width="250"><br><b>🔐 Login Screen</b><br>Secure user authentication with quick access to emergency tools.</td>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/home%20page.png" width="250"><br><b>🏠 Home Dashboard</b><br>Central hub for navigation, alerts, and safety options.</td>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/home%20page%202.png" width="250"><br><b>🌐 Alternate Home View</b><br>Personalized layout for easy user interaction.</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/Safe%20path%20navigation.png" width="250"><br><b>🗺️ Safe Path Navigation</b><br>Uses AI to guide users through the safest routes.</td>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/ai%20chatbot.png" width="250"><br><b>💬 AI Chatbot</b><br>Provides real-time safety guidance and emergency help.</td>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/ai%20legal%20tool.png" width="250"><br><b>⚖️ AI Legal Tool</b><br>Offers instant legal aid and rights awareness.</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/lawyer%20search.png" width="250"><br><b>👩‍⚖️ Lawyer Search</b><br>Find verified lawyers nearby with quick filters.</td>
+    <td align="center"><img src="https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/pro%20bono%20platform.png" width="250"><br><b>🤝 Pro Bono Platform</b><br>Connects victims with trusted lawyers offering free legal support.</td>
+  </tr>
+</table>
 
 
 
