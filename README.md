@@ -1,85 +1,114 @@
-Naari Shakti AI - Empowering Women through Technology
-SDG Goal: Peace, Justice, and Strong Institutions
+🌍 Naari Shakti AI – Empowering Women through Technology
+🎯 SDG Goal: Peace, Justice, and Strong Institutions
+👩‍💻 Team Name: Innovation Sena
 
-Team Name: Innovation Sena
+👩‍💻 Team Members:
 
-Team Members:
 P. Priya Varsha
+
 Likhitha Dorraju
+
 Keerthi Reddy
 
-Problem Statement:
+💡 Overview
 
-In 2025, safety remains an unresolved issue for women — whether at home, at work, on the streets, or online. Despite technological advancements, current safety measures still fail to bridge the gap between existing systems and the real needs of women.
+Naari Shakti AI is a smart mobile application designed to bridge the gap between women’s safety needs and existing fragmented solutions.
+By integrating AI, real-time technology, and legal support, it aims to empower women with safety, justice, and community confidence — all in one platform.
 
-Fragmented Safety Systems: Existing measures are limited to basic SOS alerts or location sharing, lacking timely updates and actionable responses.
+🚨 Problem Statement
 
-Lack of Evidence: When seeking justice, women often face difficulty in gathering reliable evidence, which complicates legal action.
+In 2025, safety remains an unresolved issue for women — at home, work, or in public spaces.
+Despite advancements in technology, current safety systems fail to provide comprehensive protection and support.
 
-Legal Aid Accessibility: There’s a lack of accessible, affordable, and trustworthy legal assistance for women in distress.
+⚠️ Challenges Faced:
 
-Fear and Uncertainty: The absence of safety assurance in public spaces, particularly while commuting, leads to constant fear instead of security.
+Fragmented Safety Systems: Limited to SOS or basic location sharing without real-time updates.
 
-There is an urgent need for a comprehensive, reliable, and accessible solution that goes beyond fragmented systems and offers true safety and empowerment to women.
+Lack of Evidence: Difficulty in collecting reliable proof during emergencies or legal cases.
 
-Proposed Solution:
+Limited Legal Aid: Women struggle to find accessible and trustworthy legal assistance.
 
-Naari Shakti AI offers a holistic approach to women’s safety by integrating AI and technology to provide real-time safety features, legal assistance, and community support.
+Fear & Insecurity: Lack of assurance while commuting or being alone in public spaces.
 
-Core Safety Features
+👉 There is an urgent need for a holistic, accessible, and intelligent solution that ensures real-time safety and empowerment for women.
 
-SOS Activation: Sequential calls and SMS alerts to trusted contacts.
+💪 Proposed Solution
 
-Adaptive Location Updates: Sends location updates only if the user moves more than 80 meters.
+Naari Shakti AI provides a complete safety ecosystem using artificial intelligence and location-aware technology.
+It goes beyond basic alerts to ensure prevention, protection, and post-incident support.
 
-Evidence Capture: Automatically records background videos and uploads them securely to trusted contacts.
+🔐 Core Safety Features
 
-Safe Path Navigation: Provides the shortest and safest route with a crime heatmap, using the A* algorithm.
+🆘 SOS Activation: Sequential emergency calls and SMS alerts to trusted contacts.
 
-Legal Assistance
+📍 Adaptive Location Updates: Sends live location only when the user moves more than 80 meters — preserving battery and privacy.
 
-AI Chatbot: Provides legal guidance and rights awareness.
+🎥 Evidence Capture: Background video recording auto-uploads to trusted contacts for proof and protection.
 
-Complaint Drafting: Auto-generates legal forms for complaints, stored securely.
+🗺️ Safe Path Navigation: Suggests the shortest and safest route using crime heatmaps powered by the A* algorithm.
 
-Community & Support
+⚖️ Legal Assistance
 
-Pro Bono Platform: Connects victims with verified lawyers.
+🤖 AI Chatbot: Offers instant legal guidance and rights awareness.
 
-Lawyer Verification: Ensures lawyer credibility via Bar ID and admin approval.
+📝 Complaint Drafting: Auto-generates structured legal forms and stores them securely.
 
-Technologies Used
+🧑‍⚖️ Community & Support
 
-Kotlin for Android app development
+💬 Pro Bono Platform: Connects women with verified lawyers for free legal aid.
 
-AI and Machine Learning: For crime prediction and safe path navigation
+✅ Lawyer Verification: Every lawyer is validated via Bar ID and admin approval to ensure authenticity.
 
-Firebase: For real-time location updates
+🧠 Technologies Used
+Technology	Purpose
+Kotlin	Android app development
+AI & ML Models	Crime prediction and safe path navigation
+Firebase	Real-time location and user data management
+A* Algorithm	Optimal route selection and crime heatmapping
+🌟 Project Highlights
 
-A Algorithm:* For route optimization and crime heatmapping
+🏆 International Recognition: Proudly presented in Malaysia, representing innovative safety tech for women on a global stage.
 
-Project Highlights
+💬 Social Impact: Designed to empower women through safety, legal awareness, and confidence in public spaces.
 
-International Recognition: Presented in Malaysia, showcasing the project to a global audience.
+🎬 Demo Video
 
-Social Impact: Working toward empowering women by providing them with tools for safety, legal support, and confidence.
-
-Demo Video
-
-Watch the Naari Shakti AI demo here:
-[![Naari Shakti AI Demo Video](Demo)
+🎥 Watch the Naari Shakti AI in action here:
 
 
+(Replace your-video-id with your actual YouTube video ID.)
 
+📱 Installation Guide
 
-Installation
+To run the project locally:
 
-To run this app locally, clone the repo and open it in Android Studio:
-
+# Clone the repository
 git clone https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI.git
+
+# Navigate to the project directory
 cd Naari-Shakti-AI
-open in Android Studio
 
-Contributing
+# Open in Android Studio and run on emulator or device
 
-We welcome contributions to improve this project. Please feel free to fork the repo, make changes, and submit pull requests.
+🤝 Contributing
+
+Contributions are welcome!
+If you’d like to improve the project:
+
+Fork the repository
+
+Create a new branch (feature-branch)
+
+Commit your changes
+
+Submit a pull request 🎉
+
+📸 Project Glimpse
+
+(Add your project image here once uploaded to the repo)
+
+![Naari Shakti AI Project - Malaysia Presentation](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/malaysia_event.jpg)
+
+❤️ Made with passion by Team Innovation Sena
+
+Empowering Women through Technology – for a Safer, Stronger Tomorrow.
