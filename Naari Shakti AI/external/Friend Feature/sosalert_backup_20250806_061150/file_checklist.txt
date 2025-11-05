@@ -1,0 +1,29 @@
+UPDATED FILES CHECKLIST
+========================
+
+KOTLIN FILES (should be updated):
+- AutoChatbotActivity.kt (NEW FILE)
+- FilingGuidanceActivity.kt (NEW FILE) 
+- ChatbotActivity.kt (UPDATED)
+- IssueSelectionActivity.kt (UPDATED)
+- KnowYourRightsActivity.kt (UPDATED)
+
+LAYOUT FILES (should be updated):
+- activity_filing_guidance.xml (NEW FILE)
+- activity_issue_selection.xml (UPDATED)
+- activity_know_your_rights.xml (UPDATED)
+
+MANIFEST FILE (should be updated):
+- AndroidManifest.xml (added new activities)
+
+TO VERIFY IN ANDROID STUDIO:
+1. Open Project panel (left side)
+2. Expand: app → src → main → java → com.example.sosalert
+3. You should see AutoChatbotActivity.kt and FilingGuidanceActivity.kt
+4. Expand: app → src → main → res → layout
+5. You should see activity_filing_guidance.xml
+
+IF FILES ARE MISSING:
+- Close Android Studio
+- Delete .idea folder from project
+- Reopen project in Android Studio 

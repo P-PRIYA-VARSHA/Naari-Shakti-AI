@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "547760649801",
+    "project_id": "shaktibot-probono",
+    "storage_bucket": "shaktibot-probono.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547760649801:android:2371240742d3dff76ab198",
+        "android_client_info": {
+          "package_name": "com.example.shaktibotprobono"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxVgMiXTD7iRYgBzpa-xKhQ0Bxbxs54BI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

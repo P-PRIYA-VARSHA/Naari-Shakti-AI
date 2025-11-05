@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/action_ai_tools"
+            android:title="AI Legal Tools" />
+        <item
+            android:id="@+id/action_pro_bono"
+            android:title="Pro Bono" />
+        <item
+            android:id="@+id/action_safe_path"
+            android:title="Safe Path Navigation" />
+        <item
+            android:id="@+id/action_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/action_help"
+            android:title="Help" />
+        <item
+            android:id="@+id/action_privacy_security"
+            android:title="Privacy &amp; Security" />
+    </group>
+    <item
+        android:id="@+id/action_logout"
+        android:title="Log out" />
+</menu>

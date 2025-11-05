@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Soft shadow under the logo -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="96dp" android:height="96dp" />
+            <gradient
+                android:type="radial"
+                android:gradientRadius="52dp"
+                android:centerX="50%"
+                android:centerY="62%"
+                android:startColor="#00000000"
+                android:endColor="#00000000"/>
+        </shape>
+    </item>
+
+    <!-- Padded logo bitmap centered -->
+    <item
+        android:top="24dp"
+        android:bottom="24dp"
+        android:left="24dp"
+        android:right="24dp">
+        <bitmap
+            android:src="@drawable/app_logo"
+            android:antialias="true"
+            android:filter="true"
+            android:gravity="center" />
+    </item>
+</layer-list>

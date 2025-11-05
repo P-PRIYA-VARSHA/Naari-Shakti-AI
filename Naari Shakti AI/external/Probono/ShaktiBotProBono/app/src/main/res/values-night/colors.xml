@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Centralized header/footer colors (dark mode) -->
+    <color name="header_color">#2E2436</color>
+    <color name="footer_color">#2E2436</color>
+</resources>

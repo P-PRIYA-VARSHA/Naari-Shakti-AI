@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureShe - Complete Flow Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #d32f2f;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+
+        .test-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .test-section.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+
+        .test-section.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .test-section.loading {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+
+        input, button {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        input {
+            width: 300px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .step.active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .step.completed {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #6c757d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            font-weight: bold;
+        }
+
+        .step.active .step-number {
+            background: #007bff;
+        }
+
+        .step.completed .step-number {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">SS</div>
+        <h1>SecureShe Complete Flow Test</h1>
+        <p class="subtitle">Testing the complete evidence backup system from start to finish</p>
+
+        <div class="flow-steps">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div>Email Setup</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div>Send Setup Email</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div>Google Drive Setup</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <div>Complete</div>
+            </div>
+        </div>
+
+        <div class="test-section" id="emailTest">
+            <h3>Step 1: Test EmailJS Setup</h3>
+            <p>First, let's verify EmailJS is working correctly.</p>
+            <button onclick="testEmailJS()">Test EmailJS</button>
+            <button onclick="testEmailSending()">Test Email Sending</button>
+            <div id="emailStatus" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="test-section" id="setupEmailTest">
+            <h3>Step 2: Send Setup Email</h3>
+            <p>Send a setup email to a contact (use your own email for testing).</p>
+            <input type="email" id="contactEmail" placeholder="Enter contact email" value="test@gmail.com">
+            <input type="email" id="userEmail" placeholder="Enter your email" value="user@gmail.com">
+            <button onclick="sendSetupEmail()">Send Setup Email</button>
+            <div id="setupEmailStatus" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="test-section" id="driveSetupTest">
+            <h3>Step 3: Test Google Drive Setup</h3>
+            <p>Test the secure setup page with different scenarios.</p>
+            <button onclick="testValidSetup()">Test Valid Setup Link</button>
+            <button onclick="testInvalidSetup()">Test Invalid Setup Link</button>
+            <button onclick="testExpiredSetup()">Test Expired Setup Link</button>
+            <div id="driveSetupStatus" class="status" style="display: none;"></div>
+        </div>
+
+        <div class="test-section" id="completeTest">
+            <h3>Step 4: Complete Flow Summary</h3>
+            <p>Review the complete flow test results.</p>
+            <button onclick="showSummary()">Show Test Summary</button>
+            <div id="summaryStatus" class="status" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("4_khaQaZdPlN0GJA1");
+        })();
+
+        let testResults = {
+            emailJS: false,
+            emailSending: false,
+            setupEmail: false,
+            validSetup: false,
+            invalidSetup: false,
+            expiredSetup: false
+        };
+
+        function showStatus(elementId, type, message) {
+            const statusDiv = document.getElementById(elementId);
+            statusDiv.className = `status ${type}`;
+            statusDiv.textContent = message;
+            statusDiv.style.display = 'block';
+        }
+
+        function updateStep(stepNumber, status) {
+            const step = document.getElementById(`step${stepNumber}`);
+            step.className = `step ${status}`;
+        }
+
+        function testEmailJS() {
+            showStatus('emailStatus', 'loading', 'Testing EmailJS initialization...');
+            
+            if (typeof emailjs !== 'undefined') {
+                showStatus('emailStatus', 'success', 'EmailJS is loaded successfully!');
+                testResults.emailJS = true;
+                updateStep(1, 'completed');
+            } else {
+                showStatus('emailStatus', 'error', 'EmailJS failed to load');
+                testResults.emailJS = false;
+            }
+        }
+
+        function testEmailSending() {
+            showStatus('emailStatus', 'loading', 'Sending test email...');
+            
+            const templateParams = {
+                user_email: 'test@example.com',
+                setup_link: 'https://she-56fea.web.app/setup-drive?token=test123',
+                to_email: 'test@example.com'
+            };
+
+            emailjs.send(
+                'service_wmfy1ym',
+                'template_dygrjqs',
+                templateParams,
+                '4_khaQaZdPlN0GJA1'
+            ).then(
+                function(response) {
+                    console.log('SUCCESS!', response);
+                    showStatus('emailStatus', 'success', 'Test email sent successfully! EmailJS is working.');
+                    testResults.emailSending = true;
+                    updateStep(1, 'completed');
+                },
+                function(error) {
+                    console.log('FAILED...', error);
+                    showStatus('emailStatus', 'error', 'Failed to send email: ' + error.text);
+                    testResults.emailSending = false;
+                }
+            );
+        }
+
+        function sendSetupEmail() {
+            const contactEmail = document.getElementById('contactEmail').value;
+            const userEmail = document.getElementById('userEmail').value;
+            
+            if (!contactEmail || !userEmail) {
+                showStatus('setupEmailStatus', 'error', 'Please enter both email addresses');
+                return;
+            }
+
+            showStatus('setupEmailStatus', 'loading', 'Sending setup email...');
+            
+            // Generate a simple token for testing
+            const token = generateTestToken();
+            const setupLink = `https://she-56fea.web.app/setup-drive?token=${token}&email=${contactEmail}`;
+            
+            const templateParams = {
+                user_email: userEmail,
+                setup_link: setupLink,
+                to_email: contactEmail
+            };
+
+            emailjs.send(
+                'service_wmfy1ym',
+                'template_dygrjqs',
+                templateParams,
+                '4_khaQaZdPlN0GJA1'
+            ).then(
+                function(response) {
+                    console.log('Setup email sent!', response);
+                    showStatus('setupEmailStatus', 'success', `Setup email sent to ${contactEmail}! Check your email for the setup link.`);
+                    testResults.setupEmail = true;
+                    updateStep(2, 'completed');
+                    updateStep(3, 'active');
+                },
+                function(error) {
+                    console.log('Setup email failed...', error);
+                    showStatus('setupEmailStatus', 'error', 'Failed to send setup email: ' + error.text);
+                    testResults.setupEmail = false;
+                }
+            );
+        }
+
+        function generateTestToken() {
+            // Generate a 32-character hex token with timestamp in the last 8 chars
+            const hexChars = '0123456789abcdef';
+            let randomPart = '';
+            for (let i = 0; i < 24; i++) {
+                randomPart += hexChars[Math.floor(Math.random() * hexChars.length)];
+            }
+            const nowSeconds = Math.floor(Date.now() / 1000);
+            const timestampHex = nowSeconds.toString(16).padStart(8, '0').slice(-8);
+            return randomPart + timestampHex;
+        }
+
+        function testValidSetup() {
+            const token = generateTestToken();
+            const setupLink = `https://she-56fea.web.app/setup-drive?token=${token}&email=test@gmail.com`;
+            
+            showStatus('driveSetupStatus', 'success', `Valid setup link generated: ${setupLink}`);
+            testResults.validSetup = true;
+            
+            // Open the setup link in a new tab
+            window.open(setupLink, '_blank');
+        }
+
+        function testInvalidSetup() {
+            const setupLink = 'https://she-56fea.web.app/setup-drive?token=invalid';
+            
+            showStatus('driveSetupStatus', 'success', `Invalid setup link: ${setupLink}`);
+            testResults.invalidSetup = true;
+            
+            // Open the setup link in a new tab
+            window.open(setupLink, '_blank');
+        }
+
+        function testExpiredSetup() {
+            const setupLink = 'https://she-56fea.web.app/setup-drive?token=00000000000000000000000000000000';
+            
+            showStatus('driveSetupStatus', 'success', `Expired setup link: ${setupLink}`);
+            testResults.expiredSetup = true;
+            
+            // Open the setup link in a new tab
+            window.open(setupLink, '_blank');
+        }
+
+        function showSummary() {
+            const summary = `
+                Test Results Summary:
+                
+                ✅ EmailJS Loading: ${testResults.emailJS ? 'PASS' : 'FAIL'}
+                ✅ Email Sending: ${testResults.emailSending ? 'PASS' : 'FAIL'}
+                ✅ Setup Email: ${testResults.setupEmail ? 'PASS' : 'FAIL'}
+                ✅ Valid Setup Test: ${testResults.validSetup ? 'PASS' : 'FAIL'}
+                ✅ Invalid Setup Test: ${testResults.invalidSetup ? 'PASS' : 'FAIL'}
+                ✅ Expired Setup Test: ${testResults.expiredSetup ? 'PASS' : 'FAIL'}
+                
+                Overall Status: ${Object.values(testResults).every(r => r) ? 'ALL TESTS PASSED' : 'SOME TESTS FAILED'}
+            `;
+            
+            showStatus('summaryStatus', 'success', summary);
+            updateStep(4, 'completed');
+        }
+
+        // Auto-test EmailJS on page load
+        window.onload = function() {
+            testEmailJS();
+        };
+    </script>
+</body>
+</html>

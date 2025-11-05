@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Know Your Legal Rights"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#2C3E50"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/rightsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#2C3E50"
+            android:lineSpacingExtra="4dp"
+            android:autoLink="web"
+            android:textIsSelectable="true" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/contactLegalAidBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📞 Contact Legal Aid"
+            android:textSize="16sp"
+            android:backgroundTint="#3498DB"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/downloadRightsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📄 Download Rights Guide"
+            android:textSize="16sp"
+            android:backgroundTint="#27AE60"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/emergencyContactsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🚨 Emergency Contacts"
+            android:textSize="16sp"
+            android:backgroundTint="#E74C3C" />
+
+    </LinearLayout>
+
+</LinearLayout> 

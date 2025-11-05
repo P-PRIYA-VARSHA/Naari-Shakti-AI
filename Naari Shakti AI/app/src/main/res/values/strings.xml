@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Naari Shakti AI</string>
+    <!-- TODO: Put your actual Maps API key here -->
+    <string name="google_maps_key">AIzaSyCKR7hO9roUibqNMnybBslQrOO_DzsAYok</string>
+    <!-- Optional: Use a separate unrestricted Web Service key for Directions API. If empty, app will fallback to google_maps_key. -->
+    <string name="google_directions_key"></string>
+    <!-- AI Tools Screen -->
+    <string name="menu">Menu</string>
+    <string name="ai_legal_tools">AI Legal Tools</string>
+    <string name="app_logo">App Logo</string>
+    <string name="info_card_placeholder">Feature information will appear here. Replace this placeholder with your content.</string>
+    <string name="cd_ai_chat_icon">AI chat icon</string>
+    <string name="cd_research_icon">Legal research icon</string>
+    <string name="cd_analysis_icon">Case analysis icon</string>
+    <string name="cd_contract_icon">Contract review icon</string>
+    <string name="cd_form_icon">Form filler icon</string>
+    <string name="cd_document_icon">Document generator icon</string>
+    <string name="cd_rights_icon">Know your rights icon</string>
+    <string name="cd_filing_icon">Filing guidance icon</string>
+    <!-- Card titles and subtitles -->
+    <string name="ai_legal_assistant_title">AI Legal Assistant</string>
+    <string name="ai_legal_assistant_subtitle">Chat with AI for legal guidance and information</string>
+
+    <string name="legal_research_title">Legal Research Assistant</string>
+    <string name="legal_research_subtitle">Research case law, statutes, and summaries</string>
+
+    <string name="case_analysis_title">Case Analysis</string>
+    <string name="case_analysis_subtitle">Analyze facts and get next-step guidance</string>
+
+    <string name="contract_review_title">Contract Review</string>
+    <string name="contract_review_subtitle">Paste text and get clause risk and edits</string>
+
+    <string name="form_filler_title">Legal Form Filler</string>
+    <string name="form_filler_subtitle">Guided filling for standard forms</string>
+
+    <string name="document_generator_title">Document Generator</string>
+    <string name="document_generator_subtitle">Generate legal documents with AI assistance</string>
+
+    <string name="know_your_rights_title">Know Your Rights</string>
+    <string name="know_your_rights_subtitle">Learn about your legal rights and protections</string>
+
+    <string name="filing_guidance_title">Filing Guidance</string>
+    <string name="filing_guidance_subtitle">Step-by-step guidance for legal filings</string>
+
+    <string name="powered_by_advanced_ai_text">Powered by Advanced AI</string>
+    <string name="footer_help_hope_text">“Help At Hand, Hope In Heart”</string>
+    
+    <!-- Safe Path UI -->
+    <string name="ns_header_title">Naari Shakti AI</string>
+    <string name="safe_path_navigation">Safe Path Navigation</string>
+    <string name="safety_moves">“Safety That Moves With You”</string>
+    <string name="profile_footer_quote">“The Safety You Can Count On”</string>
+
+    <!-- Permissions guidance -->
+    <string name="permission_sms_required_title">SMS Permission Required</string>
+    <string name="permission_sms_restricted_message">This device restricts SMS permission for apps installed outside the Play Store on newer Android versions. To enable SOS messages:\n\nOpen App info → 3‑dot menu → Allow restricted settings → Permissions → SMS → Allow.</string>
+    <string name="open_settings">Open Settings</string>
+
+    <!-- Dashboard SOS note -->
+    <string name="sos_press_note">If you are in an emergency, please press this button.</string>
+</resources>

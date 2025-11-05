@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737884510966",
+    "project_id": "sos-alert-9bae8",
+    "storage_bucket": "sos-alert-9bae8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737884510966:android:db244da3fa35d2c3ecaad7",
+        "android_client_info": {
+          "package_name": "com.example.sosalert"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4OoLjBndtXaNPGv6MBFNIOEP73zmU1Tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

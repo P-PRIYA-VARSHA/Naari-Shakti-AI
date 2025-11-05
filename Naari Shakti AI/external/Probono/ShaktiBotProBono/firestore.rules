@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() {
+      return isSignedIn() &&
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Helper: changed keys in this update
+    function changedKeys() {
+      return resource.data.diff(request.resource.data).changedKeys();
+    }
+
+    // Helper: allow only availability (+ optional updatedAt)
+    function isAvailabilityOnly() {
+      let ck = changedKeys();
+      return (ck.size() == 1 && ck.hasOnly(['availability'])) ||
+             (ck.size() == 2 && ck.hasOnly(['availability','updatedAt']));
+    }
+
+    // Helper: allow only cases handled (+ optional updatedAt)
+    function isCasesHandledOnly() {
+      let ck = changedKeys();
+      return (ck.size() == 1 && ck.hasOnly(['casesHandled'])) ||
+             (ck.size() == 2 && ck.hasOnly(['casesHandled','updatedAt']));
+    }
+
+    // Helper: allow only Excel verification fields (+ optional updatedAt)
+    function isExcelOnly() {
+      let ck = changedKeys();
+      return ck.hasOnly([
+        'excelIsVerified','excelConfidence','excelMatchedName',
+        'excelMatchedEnrollment','excelReason',
+        'excelVerificationTimestamp','excelTotalAdvocatesInDatabase',
+        'updatedAt'
+      ]);
+    }
+
+    // Public lawyer directory
+    match /lawyers/{lawyerId} {
+      // Anyone can read to see the directory in the app
+      allow read: if true;
+
+      // Lawyer creates own doc (registration) with id == uid
+      allow create: if isSignedIn() &&
+                    lawyerId == request.auth.uid &&
+                    request.resource.data.userId == request.auth.uid;
+
+      // Lawyer can update ONLY availability, cases handled, or Excel verification fields
+      allow update: if isSignedIn() &&
+                    resource.data.userId == request.auth.uid &&
+                    request.resource.data.userId == request.auth.uid &&
+                    (isAvailabilityOnly() || isCasesHandledOnly() || isExcelOnly());
+
+      // Admins can do everything (approve/reject/delete)
+      allow write, update, delete, create: if isAdmin();
+    }
+
+    // User profile meta (not the public directory)
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Admin registry
+    match /admins/{adminId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Deny all else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

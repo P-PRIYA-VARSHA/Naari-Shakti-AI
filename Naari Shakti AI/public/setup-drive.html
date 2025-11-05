@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureShe - Google Drive Setup</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #d32f2f;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .setup-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .setup-info h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .setup-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .google-signin-container {
+            margin-bottom: 20px;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #d32f2f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">SS</div>
+        <h1>SecureShe Setup</h1>
+        <p class="subtitle">Complete Google Drive authorization for evidence backup</p>
+
+        <div class="setup-info">
+            <h3>What this does:</h3>
+            <p>• Grants SecureShe access to upload SOS evidence videos to your Google Drive</p>
+            <p>• Creates a secure folder for storing evidence</p>
+            <p>• Only uploads when SOS is activated</p>
+            <p>• You can revoke access anytime from your Google Account settings</p>
+        </div>
+
+        <div class="google-signin-container">
+            <div id="g_id_onload"
+                 data-client_id="329957791970-54maut3n1e0qmda61ieu5hk6aa741nm4.apps.googleusercontent.com"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                 data-type="standard"
+                 data-shape="rectangular"
+                 data-theme="outline"
+                 data-text="signin_with"
+                 data-size="large"
+                 data-logo_alignment="left"
+                 data-callback="handleCredentialResponse">
+            </div>
+            <div style="margin-top:12px;">
+                <button id="grantDriveBtn" style="display:none;padding:10px 14px;border:none;border-radius:6px;background:#1a73e8;color:#fff;font-weight:600;">Grant Drive Access</button>
+            </div>
+        </div>
+
+        <div id="status" class="status" style="display: none;"></div>
+
+        <div class="footer">
+            <p>SecureShe - Women Safety SOS App</p>
+            <p>This setup is required for evidence preservation</p>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("4_khaQaZdPlN0GJA1");
+        })();
+
+        // Token client for Drive scope consent
+        let tokenClient = null;
+        let selectedEmail = null;
+        let consentRequested = false;
+        
+        window.addEventListener('load', () => {
+            if (window.google && google.accounts && google.accounts.oauth2) {
+                tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: '329957791970-54maut3n1e0qmda61ieu5hk6aa741nm4.apps.googleusercontent.com',
+                    scope: 'https://www.googleapis.com/auth/drive.file',
+                    callback: (tokenResponse) => {
+                        // Clear the timeout
+                        if (window.consentTimeoutId) {
+                            clearTimeout(window.consentTimeoutId);
+                            window.consentTimeoutId = null;
+                        }
+                        
+                        if (tokenResponse && tokenResponse.access_token) {
+                            showStatus('success', 'Google authorization successful! Drive permission granted. Setup completed.');
+                            markBackupConnected();
+                            consentRequested = false;
+                        } else {
+                            showStatus('error', 'Failed to obtain Drive permission. Please try again.');
+                            consentRequested = false;
+                        }
+                    }
+                });
+                
+                // Listen for account changes
+                if (google.accounts.id) {
+                    google.accounts.id.initialize({
+                        client_id: '329957791970-54maut3n1e0qmda61ieu5hk6aa741nm4.apps.googleusercontent.com',
+                        callback: handleCredentialResponse
+                    });
+                }
+            }
+        });
+
+        // Get token from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const setupToken = urlParams.get('token');
+        const userEmail = urlParams.get('email'); // Get user email from URL
+
+        // Security checks
+        if (!setupToken) {
+            showStatus('error', 'Invalid setup link. Please check your email for the correct link.');
+            hideGoogleSignIn();
+        } else {
+            // Verify token format and basic validation
+            if (!isValidTokenFormat(setupToken)) {
+                showStatus('error', 'Invalid setup token format.');
+                hideGoogleSignIn();
+            } else {
+                // Check if token is expired (24 hours)
+                if (isTokenExpired(setupToken)) {
+                    showStatus('error', 'This setup link has expired. Please request a new one.');
+                    hideGoogleSignIn();
+                } else {
+                    // Show success message and enable Google Sign-In
+                    showStatus('success', 'Setup link verified. Please sign in with Google to complete setup.');
+                    showGrantDriveButton();
+                }
+            }
+        }
+
+        function handleCredentialResponse(response) {
+            window.lastGsiResponse = response;
+            showStatus('loading', 'Processing authorization...');
+            
+            try {
+                const responsePayload = decodeJwtResponse(response.credential);
+                selectedEmail = responsePayload.email;
+                
+                // Additional security check: verify email matches
+                if (userEmail && responsePayload.email !== userEmail) {
+                    showStatus('error', 'Email mismatch. This setup link is not for your email address.');
+                    consentRequested = false;
+                    return;
+                }
+                
+                // Log successful authorization (for demo purposes)
+                console.log('Google Sign-In successful:', responsePayload);
+                
+                // Clear any existing consent state when switching accounts
+                consentRequested = false;
+                if (window.consentTimeoutId) {
+                    clearTimeout(window.consentTimeoutId);
+                    window.consentTimeoutId = null;
+                }
+                
+                // After successful sign-in, request Drive permission automatically
+                grantDriveAccess();
+                
+                // In a real implementation, you would:
+                // 1. Send the authorization data to your backend
+                // 2. Store the refresh token securely
+                // 3. Update the setup status
+            } catch (e) {
+                console.error('Failed to process Google credential', e);
+                showStatus('error', 'Sign-in was cancelled or failed. Please try again.');
+                consentRequested = false;
+            }
+        }
+        // Expose for GIS data-callback to find it reliably
+        window.handleCredentialResponse = handleCredentialResponse;
+
+        function decodeJwtResponse(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        // Note: Firebase Functions are not available due to Blaze plan requirement
+        // This is a client-side only implementation for demo purposes
+
+        function showStatus(type, message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            if (type === 'loading') {
+                statusDiv.innerHTML = `<div class="loading-spinner"></div>${message}`;
+            } else {
+                statusDiv.textContent = message;
+            }
+        }
+
+        // Security functions
+        function isValidTokenFormat(token) {
+            // Check if token is a valid hex string (32 characters)
+            return /^[a-fA-F0-9]{32}$/.test(token);
+        }
+
+        function isTokenExpired(token) {
+            // Extract timestamp from token (simple implementation)
+            // In a real app, you'd decode the token properly
+            try {
+                // For demo: assume token contains timestamp in last 8 characters
+                const timestampHex = token.slice(-8);
+                const timestamp = parseInt(timestampHex, 16);
+                if (Number.isNaN(timestamp)) {
+                    // If we can't parse a timestamp, don't block the user in demo
+                    return false;
+                }
+                const tokenTime = new Date(timestamp * 1000);
+                const now = new Date();
+                
+                // Token expires after 24 hours
+                const expiryTime = new Date(tokenTime.getTime() + (24 * 60 * 60 * 1000));
+                
+                return now > expiryTime;
+            } catch (error) {
+                // If we can't parse the token, consider it valid for demo purposes
+                return false;
+            }
+        }
+
+        function hideGoogleSignIn() {
+            const googleSignInContainer = document.querySelector('.google-signin-container');
+            if (googleSignInContainer) {
+                googleSignInContainer.style.display = 'none';
+            }
+        }
+
+        function showGoogleSignIn() {
+            const googleSignInContainer = document.querySelector('.google-signin-container');
+            if (googleSignInContainer) {
+                googleSignInContainer.style.display = 'block';
+            }
+        }
+
+        // Note: Token validation is now done client-side for demo purposes
+        // In a production app, you would validate tokens server-side
+        function showGrantDriveButton() {
+            const btn = document.getElementById('grantDriveBtn');
+            if (btn) {
+                btn.style.display = 'inline-block';
+                btn.onclick = function() {
+                    // Reset consent state before requesting
+                    resetConsentState();
+                    grantDriveAccess();
+                };
+            }
+        }
+
+        function grantDriveAccess() {
+            if (!tokenClient) {
+                showStatus('error', 'Google client not initialized. Please reload and try again.');
+                return;
+            }
+            
+            // Always reset consent state when starting a new request
+            resetConsentState();
+            
+            try {
+                consentRequested = true;
+                showStatus('loading', 'Requesting Google Drive permission...');
+                
+                // Set a timeout for the consent request
+                window.consentTimeoutId = setTimeout(() => {
+                    if (consentRequested) {
+                        showStatus('error', 'Consent request timed out. Please try again.');
+                        consentRequested = false;
+                    }
+                }, 30000); // 30 seconds timeout
+                
+                // Use the selected email or user email for the consent request
+                const loginHint = selectedEmail || userEmail;
+                console.log('Requesting consent for email:', loginHint);
+                
+                tokenClient.requestAccessToken({ 
+                    prompt: 'consent', 
+                    login_hint: loginHint || undefined 
+                });
+                
+            } catch (e) {
+                console.error('Drive consent request failed', e);
+                showStatus('error', 'Failed to request Drive permission. Please try again.');
+                consentRequested = false;
+            }
+        }
+
+        // Function to reset consent state when switching accounts
+        function resetConsentState() {
+            consentRequested = false;
+            if (window.consentTimeoutId) {
+                clearTimeout(window.consentTimeoutId);
+                window.consentTimeoutId = null;
+            }
+        }
+
+        // Function to mark backup as connected
+        function markBackupConnected() {
+            // Since we can't directly communicate with the Android app from the web page,
+            // we'll store the connection status in localStorage and show a message
+            // The app can check this when it loads the setup page
+            localStorage.setItem('secureshe_backup_connected', 'true');
+            localStorage.setItem('secureshe_backup_email', selectedEmail || userEmail || '');
+            localStorage.setItem('secureshe_backup_timestamp', new Date().toISOString());
+            
+            // Show success message with instructions
+            showStatus('success', 'Google authorization successful! Drive permission granted. Setup completed. You can now close this page and return to the SecureShe app. Tap the "Mark as connected" button in the app to update the status.');
+            
+            // Try to send a message to the parent window if this is embedded
+            if (window.parent && window.parent !== window) {
+                try {
+                    window.parent.postMessage({
+                        type: 'SECURESHE_BACKUP_CONNECTED',
+                        email: selectedEmail || userEmail,
+                        timestamp: new Date().toISOString()
+                    }, '*');
+                } catch (e) {
+                    console.log('Could not send message to parent window');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
