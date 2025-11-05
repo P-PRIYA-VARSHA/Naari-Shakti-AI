@@ -105,9 +105,8 @@ Submit a pull request 🎉
 
 📸 Project Glimpse
 
-(Add your project image here once uploaded to the repo)
+[🎥 Watch Demo Video](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/WhatsApp Video 2025-11-05 at 9.29.10 PM (1).mp4)
 
-![Naari Shakti AI Project - Malaysia Presentation](https://github.com/P-PRIYA-VARSHA/Naari-Shakti-AI/blob/main/images/malaysia_event.jpg)
 
 ❤️ Made with passion by Team Innovation Sena
 
